@@ -1,0 +1,7 @@
+.idea
+vendor
+resource
+.vscode
+__debug_bin
+erply-api
+erply-api.exe

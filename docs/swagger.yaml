@@ -1,0 +1,179 @@
+basePath: /
+definitions:
+  vojo.AddCustomerRewardPointsBulkReq:
+    properties:
+      customerList:
+        items:
+          $ref: '#/definitions/vojo.AddCustomerRewardPointsBulkSingle'
+        type: array
+    required:
+    - customerList
+    type: object
+  vojo.AddCustomerRewardPointsBulkSingle:
+    properties:
+      customerID:
+        type: string
+      points:
+        type: string
+    required:
+    - customerID
+    - points
+    type: object
+  vojo.AddCustomerRewardPointsReq:
+    properties:
+      customerID:
+        example: "17"
+        type: string
+      points:
+        example: "90"
+        type: string
+    required:
+    - customerID
+    - points
+    type: object
+  vojo.GetCustomersBulkReq:
+    properties:
+      pageList:
+        items:
+          $ref: '#/definitions/vojo.GetCustomersSingle'
+        type: array
+    required:
+    - pageList
+    type: object
+  vojo.GetCustomersSingle:
+    properties:
+      pageNo:
+        type: string
+      recordsOnPage:
+        type: string
+    required:
+    - pageNo
+    - recordsOnPage
+    type: object
+host: localhost:9394
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a Erply api demo.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Erply Api Demo
+  version: "1.0"
+paths:
+  /api/AddCustomerRewardPoints:
+    post:
+      consumes:
+      - application/json
+      description: add customer reward points
+      parameters:
+      - default: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RBY2NvdW50IiwiZXhwIjoxNjE5MjE5Mzk2LCJpc3MiOiJlcnBseS1hcGkifQ._D6JcnV-5FeOhv6be1M5-6uaDLMqCOmiaoqyAnStjcE
+        description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: ' '
+        in: body
+        name: '-'
+        schema:
+          $ref: '#/definitions/vojo.AddCustomerRewardPointsReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"resCode": 0,"message": {"transactionID": 24,"customerID":
+            17,"points": 90,"createdUnixTime": 1616634980,"expiryUnixTime": 0}}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: AddCustomerRewardPoints
+      tags:
+      - AddCustomerRewardPoints
+  /api/AddCustomerRewardPointsBulk:
+    post:
+      consumes:
+      - application/json
+      description: add customer reward points bulk
+      parameters:
+      - default: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RBY2NvdW50IiwiZXhwIjoxNjE5MjE5Mzk2LCJpc3MiOiJlcnBseS1hcGkifQ._D6JcnV-5FeOhv6be1M5-6uaDLMqCOmiaoqyAnStjcE
+        description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: ' '
+        in: body
+        name: '-'
+        schema:
+          $ref: '#/definitions/vojo.AddCustomerRewardPointsBulkReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"resCode": 0,"message": {"transactionID": 24,"customerID":
+            17,"points": 90,"createdUnixTime": 1616634980,"expiryUnixTime": 0}}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: AddCustomerRewardPointsBulk
+      tags:
+      - AddCustomerRewardPointsBulk
+  /api/GetCustomersBulk:
+    post:
+      consumes:
+      - application/json
+      description: get customers bulk
+      parameters:
+      - default: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RBY2NvdW50IiwiZXhwIjoxNjE5MjE5Mzk2LCJpc3MiOiJlcnBseS1hcGkifQ._D6JcnV-5FeOhv6be1M5-6uaDLMqCOmiaoqyAnStjcE
+        description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: ' '
+        in: body
+        name: '-'
+        required: true
+        schema:
+          $ref: '#/definitions/vojo.GetCustomersBulkReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"resCode": 0,"message": {"transactionID": 24,"customerID":
+            17,"points": 90,"createdUnixTime": 1616634980,"expiryUnixTime": 0}}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: GetCustomersBulk
+      tags:
+      - GetCustomersBulk
+  /getToken:
+    get:
+      description: Get the token
+      parameters:
+      - description: userName
+        in: query
+        name: userName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"resCode": 0,"message": "xxxxxx"}'
+          schema:
+            type: string
+      security:
+      - Bearer: []
+      summary: GetToken
+      tags:
+      - GetToken
+swagger: "2.0"

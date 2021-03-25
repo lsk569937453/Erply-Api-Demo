@@ -1,0 +1,272 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a Erply api demo.",
+        "title": "Erply Api Demo",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "API Support",
+            "url": "http://www.swagger.io/support",
+            "email": "support@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:9394",
+    "basePath": "/",
+    "paths": {
+        "/api/AddCustomerRewardPoints": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "add customer reward points",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "AddCustomerRewardPoints"
+                ],
+                "summary": "AddCustomerRewardPoints",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RBY2NvdW50IiwiZXhwIjoxNjE5MjE5Mzk2LCJpc3MiOiJlcnBseS1hcGkifQ._D6JcnV-5FeOhv6be1M5-6uaDLMqCOmiaoqyAnStjcE",
+                        "description": "Authorization",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": " ",
+                        "name": "-",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/vojo.AddCustomerRewardPointsReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"resCode\": 0,\"message\": {\"transactionID\": 24,\"customerID\": 17,\"points\": 90,\"createdUnixTime\": 1616634980,\"expiryUnixTime\": 0}}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/AddCustomerRewardPointsBulk": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "add customer reward points bulk",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "AddCustomerRewardPointsBulk"
+                ],
+                "summary": "AddCustomerRewardPointsBulk",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RBY2NvdW50IiwiZXhwIjoxNjE5MjE5Mzk2LCJpc3MiOiJlcnBseS1hcGkifQ._D6JcnV-5FeOhv6be1M5-6uaDLMqCOmiaoqyAnStjcE",
+                        "description": "Authorization",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": " ",
+                        "name": "-",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/vojo.AddCustomerRewardPointsBulkReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"resCode\": 0,\"message\": {\"transactionID\": 24,\"customerID\": 17,\"points\": 90,\"createdUnixTime\": 1616634980,\"expiryUnixTime\": 0}}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/GetCustomersBulk": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "get customers bulk",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "GetCustomersBulk"
+                ],
+                "summary": "GetCustomersBulk",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RBY2NvdW50IiwiZXhwIjoxNjE5MjE5Mzk2LCJpc3MiOiJlcnBseS1hcGkifQ._D6JcnV-5FeOhv6be1M5-6uaDLMqCOmiaoqyAnStjcE",
+                        "description": "Authorization",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": " ",
+                        "name": "-",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/vojo.GetCustomersBulkReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"resCode\": 0,\"message\": {\"transactionID\": 24,\"customerID\": 17,\"points\": 90,\"createdUnixTime\": 1616634980,\"expiryUnixTime\": 0}}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/getToken": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "description": "Get the token",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "GetToken"
+                ],
+                "summary": "GetToken",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "userName",
+                        "name": "userName",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"resCode\": 0,\"message\": \"xxxxxx\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "vojo.AddCustomerRewardPointsBulkReq": {
+            "type": "object",
+            "required": [
+                "customerList"
+            ],
+            "properties": {
+                "customerList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/vojo.AddCustomerRewardPointsBulkSingle"
+                    }
+                }
+            }
+        },
+        "vojo.AddCustomerRewardPointsBulkSingle": {
+            "type": "object",
+            "required": [
+                "customerID",
+                "points"
+            ],
+            "properties": {
+                "customerID": {
+                    "type": "string"
+                },
+                "points": {
+                    "type": "string"
+                }
+            }
+        },
+        "vojo.AddCustomerRewardPointsReq": {
+            "type": "object",
+            "required": [
+                "customerID",
+                "points"
+            ],
+            "properties": {
+                "customerID": {
+                    "type": "string",
+                    "example": "17"
+                },
+                "points": {
+                    "type": "string",
+                    "example": "90"
+                }
+            }
+        },
+        "vojo.GetCustomersBulkReq": {
+            "type": "object",
+            "required": [
+                "pageList"
+            ],
+            "properties": {
+                "pageList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/vojo.GetCustomersSingle"
+                    }
+                }
+            }
+        },
+        "vojo.GetCustomersSingle": {
+            "type": "object",
+            "required": [
+                "pageNo",
+                "recordsOnPage"
+            ],
+            "properties": {
+                "pageNo": {
+                    "type": "string"
+                },
+                "recordsOnPage": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
