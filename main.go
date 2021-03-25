@@ -1,8 +1,10 @@
 package main
 
 import (
+	_ "erply-api/dao"
 	"erply-api/log"
 	"erply-api/router"
+	_ "erply-api/task"
 	"erply-api/util"
 	"runtime"
 
@@ -22,7 +24,6 @@ func init() {
 
 	printBanner()
 	err := r.Run(":" + PORT)
-
 	if err != nil {
 		log.Error("initController error", err.Error())
 	}
@@ -44,8 +45,8 @@ func init() {
 // @BasePath /
 func main() {
 	runtime.GOMAXPROCS(runtime.NumCPU() * 2)
-
 }
+
 func printBanner() error {
 	localIp, err := util.GetIp()
 	if err != nil {

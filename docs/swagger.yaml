@@ -124,6 +124,37 @@ paths:
       summary: AddCustomerRewardPointsBulk
       tags:
       - AddCustomerRewardPointsBulk
+  /api/GetCustomerByCustomerId:
+    get:
+      consumes:
+      - application/json
+      description: get customers by customerId
+      parameters:
+      - default: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RBY2NvdW50IiwiZXhwIjoxNjE5MjE5Mzk2LCJpc3MiOiJlcnBseS1hcGkifQ._D6JcnV-5FeOhv6be1M5-6uaDLMqCOmiaoqyAnStjcE
+        description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - default: "13"
+        description: customerId
+        in: query
+        name: customerId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"resCode": 0,"message": {"transactionID": 24,"customerID":
+            17,"points": 90,"createdUnixTime": 1616634980,"expiryUnixTime": 0}}'
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: GetCustomerByCustomerId
+      tags:
+      - GetCustomerByCustomerId
   /api/GetCustomersBulk:
     post:
       consumes:

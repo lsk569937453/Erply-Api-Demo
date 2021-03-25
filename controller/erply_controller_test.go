@@ -37,8 +37,8 @@ func TestAddCustomerRewardPointsSuccess(t *testing.T) {
 	assert.Equal(constants.NORMAL_RESPONSE_STATUS, baseRes.Rescode)
 	fmt.Println("req result is:" + resBody)
 }
-func TestAddCustomerRewardPointsError(t *testing.T) {
 
+func TestAddCustomerRewardPointsError(t *testing.T) {
 	var w *httptest.ResponseRecorder
 	assert := assert.New(t)
 	// 1.测试 index 请求
@@ -60,6 +60,7 @@ func TestAddCustomerRewardPointsError(t *testing.T) {
 	assert.Equal(err, nil)
 	assert.Equal(constants.CALL_ERPLY_API_ERROR, baseRes.Rescode)
 }
+
 func TestAddCustomerRewardPointsBulkSuccess(t *testing.T) {
 	var w *httptest.ResponseRecorder
 	assert := assert.New(t)
@@ -97,6 +98,7 @@ func TestAddCustomerRewardPointsBulkSuccess(t *testing.T) {
 	assert.Equal(constants.NORMAL_RESPONSE_STATUS, baseRes.Rescode)
 	fmt.Println("req result is:" + resBody)
 }
+
 func TestAddCustomerRewardPointsBulkError(t *testing.T) {
 	var w *httptest.ResponseRecorder
 	assert := assert.New(t)
@@ -134,6 +136,7 @@ func TestAddCustomerRewardPointsBulkError(t *testing.T) {
 	assert.Equal(constants.CALL_ERPLY_API_ERROR, baseRes.Rescode)
 	fmt.Println("req result is:" + resBody)
 }
+
 func TestGetCustomersBulkSuccess(t *testing.T) {
 	var w *httptest.ResponseRecorder
 	assert := assert.New(t)
@@ -169,6 +172,7 @@ func TestGetCustomersBulkSuccess(t *testing.T) {
 	assert.Equal(err, nil)
 	assert.Equal(constants.NORMAL_RESPONSE_STATUS, baseRes.Rescode)
 }
+
 func TestGetCustomersBulkError(t *testing.T) {
 	var w *httptest.ResponseRecorder
 	assert := assert.New(t)
@@ -203,4 +207,40 @@ func TestGetCustomersBulkError(t *testing.T) {
 	err := json.Unmarshal([]byte(resBody), &baseRes)
 	assert.Equal(err, nil)
 	assert.Equal(constants.CALL_ERPLY_API_ERROR, baseRes.Rescode)
+}
+
+func TestGetCustomersByIdSuccess(t *testing.T) {
+	var w *httptest.ResponseRecorder
+	assert := assert.New(t)
+
+	// 1.测试 index 请求
+	urlIndex := "/api/GetCustomerByCustomerId?customerId=13"
+	headers := map[string]string{
+		"Authorization": TOKEN,
+	}
+	w = util.Get(urlIndex, router, headers)
+	assert.Equal(200, w.Code)
+	body := w.Body.String()
+	var baseRes vojo.BaseRes
+	err := json.Unmarshal([]byte(body), &baseRes)
+	assert.Equal(err, nil)
+	assert.Equal(constants.NORMAL_RESPONSE_STATUS, baseRes.Rescode)
+}
+
+func TestGetCustomersByIdError(t *testing.T) {
+	var w *httptest.ResponseRecorder
+	assert := assert.New(t)
+
+	// 1.测试 index 请求
+	urlIndex := "/api/GetCustomerByCustomerId?customerId=sdsa"
+	headers := map[string]string{
+		"Authorization": TOKEN,
+	}
+	w = util.Get(urlIndex, router, headers)
+	assert.Equal(200, w.Code)
+	body := w.Body.String()
+	var baseRes vojo.BaseRes
+	err := json.Unmarshal([]byte(body), &baseRes)
+	assert.Equal(err, nil)
+	assert.Equal(constants.DATA_BASE_CALL_ERROR, baseRes.Rescode)
 }

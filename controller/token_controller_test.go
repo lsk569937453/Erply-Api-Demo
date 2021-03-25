@@ -18,12 +18,12 @@ import (
 var router *gin.Engine
 
 func TestMain(m *testing.M) {
-
 	fmt.Println("test begin")
 	InitRouter()
 	m.Run()
 	fmt.Println("test end")
 }
+
 func InitRouter() {
 	r := gin.New()
 	r.GET("/getToken", GetToken)
@@ -35,18 +35,20 @@ func InitRouter() {
 		v1.POST("/AddCustomerRewardPoints", AddCustomerRewardPoints)
 		v1.POST("/AddCustomerRewardPointsBulk", AddCustomerRewardPointsBulk)
 		v1.POST("/GetCustomersBulk", GetCustomersBulk)
+		v1.GET("/GetCustomerByCustomerId", GetCustomerByCustomerId)
 
 	}
 	router = r
 }
-func TestGetTokenSuccess(t *testing.T) {
 
+func TestGetTokenSuccess(t *testing.T) {
 	var w *httptest.ResponseRecorder
 	assert := assert.New(t)
 
 	// 1.测试 index 请求
 	urlIndex := "/getToken?userName=testUser"
-	w = util.Get(urlIndex, router)
+	header := map[string]string{}
+	w = util.Get(urlIndex, router, header)
 	assert.Equal(200, w.Code)
 	body := w.Body.String()
 	var baseRes vojo.BaseRes
@@ -55,14 +57,16 @@ func TestGetTokenSuccess(t *testing.T) {
 	assert.Equal(constants.NORMAL_RESPONSE_STATUS, baseRes.Rescode)
 	fmt.Println("user Token is:" + baseRes.Message.(string))
 }
-func TestGetTokenError(t *testing.T) {
 
+func TestGetTokenError(t *testing.T) {
 	var w *httptest.ResponseRecorder
 	assert := assert.New(t)
 
 	// 1.测试 index 请求
 	urlIndex := "/getToken"
-	w = util.Get(urlIndex, router)
+	header := map[string]string{}
+
+	w = util.Get(urlIndex, router, header)
 	assert.Equal(200, w.Code)
 	body := w.Body.String()
 	var baseRes vojo.BaseRes

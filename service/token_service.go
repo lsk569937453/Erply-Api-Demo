@@ -13,6 +13,5 @@ func GetToken(c *gin.Context) (*string, error) {
 	}
 	// 生成Token
 	tokenString, err := GenToken(userName)
-
 	return &tokenString, err
 }

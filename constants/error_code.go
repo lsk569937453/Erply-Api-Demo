@@ -7,4 +7,5 @@ const (
 	ERROR_STATUS_PARAM_WRONG = -2
 	TOKEN_EXPIRE             = -200
 	HEADER_AUTH_EMPTY        = -300
+	DATA_BASE_CALL_ERROR     = -400
 )

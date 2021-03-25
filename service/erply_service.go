@@ -2,69 +2,22 @@ package service
 
 import (
 	"context"
-	"crypto/tls"
+	"erply-api/client"
 	"erply-api/constants"
-	"erply-api/internal/common"
+	"erply-api/dao"
 	"erply-api/vojo"
-	"net/http"
+	"fmt"
+	"time"
 
 	"github.com/fatih/structs"
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/erply/api-go-wrapper/pkg/api/auth"
-
 	"github.com/erply/api-go-wrapper/pkg/api/customers"
-
-	"github.com/erply/api-go-wrapper/pkg/api"
-
-	"time"
 )
 
-var apiClient *api.Client
-
-func init() {
-	const (
-		username   = "lsk569937453@gmail.com"
-		password   = "demo1234"
-		clientCode = "113073"
-		partnerKey = "113073"
-	)
-
-	apiClientInit, err := buildClient()
-	common.Die(err)
-	apiClient = apiClientInit
-
-}
-func buildClient() (*api.Client, error) {
-
-	username := "lsk569937453@gmail.com"
-	password := "demo1234"
-	clientCode := "113073"
-
-	connectionTimeout := 60 * time.Second
-	transport := &http.Transport{
-		DisableKeepAlives:     true,
-		TLSClientConfig:       &tls.Config{InsecureSkipVerify: true},
-		ResponseHeaderTimeout: connectionTimeout,
-	}
-	httpCl := &http.Client{Transport: transport}
-
-	sessionKey, err := auth.VerifyUser(username, password, clientCode, http.DefaultClient)
-	if err != nil {
-		panic(err)
-	}
-
-	apiClient, err := api.NewClient(sessionKey, clientCode, httpCl)
-	if err != nil {
-		panic(err)
-	}
-
-	return apiClient, nil
-}
-
 func GetCustomersBulk(c *gin.Context) (*customers.GetCustomersResponseBulk, error, *int) {
-	customerCli := apiClient.CustomerManager
+	customerCli := client.ApiClient.CustomerManager
 	var reqx vojo.GetCustomersBulkReq
 	err := c.Bind(&reqx)
 	if err != nil {
@@ -85,17 +38,15 @@ func GetCustomersBulk(c *gin.Context) (*customers.GetCustomersResponseBulk, erro
 		return &bulkResp, err, &errCode
 	}
 	return &bulkResp, err, nil
-
 }
 
 func AddCustomerRewardPoints(c *gin.Context) (*customers.AddCustomerRewardPointsResult, error, *int) {
-
 	var reqx vojo.AddCustomerRewardPointsReq
 	err := c.Bind(&reqx)
 	if err != nil {
 		return nil, err, nil
 	}
-	cli := apiClient.CustomerManager
+	cli := client.ApiClient.CustomerManager
 
 	req := map[string]string{
 		"customerID": *reqx.CustomerID,
@@ -114,7 +65,7 @@ func AddCustomerRewardPoints(c *gin.Context) (*customers.AddCustomerRewardPoints
 }
 
 func AddCustomerRewardPointsBulk(c *gin.Context) (*customers.AddCustomerRewardPointsResponseBulk, error, *int) {
-	cli := apiClient.CustomerManager
+	cli := client.ApiClient.CustomerManager
 	var reqx vojo.AddCustomerRewardPointsBulkReq
 	err := c.Bind(&reqx)
 	if err != nil {
@@ -130,11 +81,23 @@ func AddCustomerRewardPointsBulk(c *gin.Context) (*customers.AddCustomerRewardPo
 	defer cancel()
 
 	resp, err := cli.AddCustomerRewardPointsBulk(ctx, reqArray, map[string]string{})
-
 	if err != nil {
 		errCode := constants.CALL_ERPLY_API_ERROR
 		return &resp, err, &errCode
 	}
 	return &resp, err, nil
+}
 
+func GetCustomerByCustomerId(c *gin.Context) (*dao.CustomerDao, error, *int) {
+	customerId := c.Query("customerId")
+	if customerId == "" {
+		return nil, fmt.Errorf("userName can not be empty!"), nil
+	}
+	var res dao.CustomerDao
+	err := dao.CronDb.Where("customer_id=?", customerId).First(&res).Error
+	if err != nil {
+		errCode := constants.DATA_BASE_CALL_ERROR
+		return nil, err, &errCode
+	}
+	return &res, nil, nil
 }

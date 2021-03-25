@@ -17,9 +17,14 @@ func ParseToStr(mp map[string]string) string {
 	values = "?" + temp
 	return values
 }
-func Get(uri string, router *gin.Engine) *httptest.ResponseRecorder {
+
+func Get(uri string, router *gin.Engine, headers map[string]string) *httptest.ResponseRecorder {
 	// 构造get请求
 	req := httptest.NewRequest("GET", uri, nil)
+
+	for key, value := range headers {
+		req.Header.Set(key, value)
+	}
 	// 初始化响应
 	w := httptest.NewRecorder()
 

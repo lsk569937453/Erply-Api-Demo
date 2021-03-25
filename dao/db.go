@@ -4,9 +4,8 @@ import (
 	"erply-api/config"
 	"erply-api/log"
 	"fmt"
-	"time"
-
 	"strconv"
+	"time"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -17,7 +16,7 @@ var (
 	password  string = ""
 	ipAddrees string = ""
 	port      int    = -1
-	dbName    string = "furnace_monitor"
+	dbName    string = "erply_api"
 	charset   string = "utf8"
 )
 var CronDb *gorm.DB
@@ -30,7 +29,6 @@ func init() {
 func initMysqlDb() (*gorm.DB, error) {
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=%s&timeout=1s&readTimeout=360s&parseTime=true&loc=Local", userName, password, ipAddrees, port, dbName, charset)
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
-
 	if err != nil {
 		log.Error("mysql connect failed, detail is [%v]", err.Error())
 		panic(err)
@@ -44,24 +42,24 @@ func initMysqlDb() (*gorm.DB, error) {
 	realDb.SetMaxIdleConns(20)
 	realDb.SetMaxOpenConns(50)
 
-	// err = db.AutoMigrate(&DownloadDao{})
-	// if err != nil {
-	// 	log.Error("AutoMigrate error", err)
-	// }
+	err = db.Set("gorm:table_options", "CHARSET=utf8").AutoMigrate(&CustomerDao{})
+	if err != nil {
+		log.Error("AutoMigrate error", err)
+	}
 
 	return db, err
-
 }
-func InitDb() *gorm.DB {
-	//db, err := initMysqlDb()
-	db, err := initMysqlDb()
 
+func InitDb() *gorm.DB {
+	// db, err := initMysqlDb()
+	db, err := initMysqlDb()
 	if err != nil {
 		panic(err)
 	}
 
 	return db
 }
+
 func initConfig() {
 	userNameRes, err := config.GetValue("mysql", "username")
 	if err != nil {

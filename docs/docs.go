@@ -125,6 +125,52 @@ var doc = `{
                 }
             }
         },
+        "/api/GetCustomerByCustomerId": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "get customers by customerId",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "GetCustomerByCustomerId"
+                ],
+                "summary": "GetCustomerByCustomerId",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RBY2NvdW50IiwiZXhwIjoxNjE5MjE5Mzk2LCJpc3MiOiJlcnBseS1hcGkifQ._D6JcnV-5FeOhv6be1M5-6uaDLMqCOmiaoqyAnStjcE",
+                        "description": "Authorization",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "13",
+                        "description": "customerId",
+                        "name": "customerId",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"resCode\": 0,\"message\": {\"transactionID\": 24,\"customerID\": 17,\"points\": 90,\"createdUnixTime\": 1616634980,\"expiryUnixTime\": 0}}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/api/GetCustomersBulk": {
             "post": {
                 "security": [
