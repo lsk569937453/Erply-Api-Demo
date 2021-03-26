@@ -19,7 +19,7 @@ import (
 // @Param userName query string true "userName"
 // @Resource GetToken
 // @Router /getToken [get]
-// @Success 200 {string} string "{"resCode": 0,"message": "xxxxxx"}"
+// @Success 200 {string} string "ok"
 func GetToken(c *gin.Context) {
 
 	var res vojo.BaseRes

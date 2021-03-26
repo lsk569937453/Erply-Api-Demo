@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      golang: 1.14
+  build:
+    commands:
+      - echo Building the go code...
+      - go mod tidy
+      - go mod vendor
+      - go build
+      - zip -r erply-api.zip  conf timer-go
+
+artifacts:
+  files:
+    - appspec.yml
+    - scripts/*
+    - erply-api.zip
+
+      

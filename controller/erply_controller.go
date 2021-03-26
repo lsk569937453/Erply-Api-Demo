@@ -19,7 +19,7 @@ import (
 // @Accept json
 // @Param - body vojo.AddCustomerRewardPointsReq false " "
 // @Router /api/AddCustomerRewardPoints [post]
-// @Success 200 {string} string "{"resCode": 0,"message": {"transactionID": 24,"customerID": 17,"points": 90,"createdUnixTime": 1616634980,"expiryUnixTime": 0}}"
+// @Success  200 {string} string "ok"
 func AddCustomerRewardPoints(c *gin.Context) {
 	var res vojo.BaseRes
 	res.Rescode = constants.NORMAL_RESPONSE_STATUS
@@ -48,7 +48,7 @@ func AddCustomerRewardPoints(c *gin.Context) {
 // @Accept json
 // @Param - body vojo.AddCustomerRewardPointsBulkReq false " "
 // @Router /api/AddCustomerRewardPointsBulk [post]
-// @Success 200 {string} string "{"resCode": 0,"message": {"transactionID": 24,"customerID": 17,"points": 90,"createdUnixTime": 1616634980,"expiryUnixTime": 0}}"
+// @Success  200 {string} string "ok"
 func AddCustomerRewardPointsBulk(c *gin.Context) {
 	var res vojo.BaseRes
 	res.Rescode = constants.NORMAL_RESPONSE_STATUS
@@ -77,7 +77,7 @@ func AddCustomerRewardPointsBulk(c *gin.Context) {
 // @Accept json
 // @Param - body vojo.GetCustomersBulkReq true " "
 // @Router /api/GetCustomersBulk [post]
-// @Success 200 {string} string "{"resCode": 0,"message": {"transactionID": 24,"customerID": 17,"points": 90,"createdUnixTime": 1616634980,"expiryUnixTime": 0}}"
+// @Success  200 {string} string "ok"
 func GetCustomersBulk(c *gin.Context) {
 	var res vojo.BaseRes
 	res.Rescode = constants.NORMAL_RESPONSE_STATUS
@@ -106,7 +106,7 @@ func GetCustomersBulk(c *gin.Context) {
 // @Accept json
 // @Param default customerId query string true "customerId" default(13)
 // @Router /api/GetCustomerByCustomerId [get]
-// @Success 200 {string} string "{"resCode": 0,"message": {"transactionID": 24,"customerID": 17,"points": 90,"createdUnixTime": 1616634980,"expiryUnixTime": 0}}"
+// @Success  200 {string} string "ok"
 func GetCustomerByCustomerId(c *gin.Context) {
 	var res vojo.BaseRes
 	res.Rescode = constants.NORMAL_RESPONSE_STATUS

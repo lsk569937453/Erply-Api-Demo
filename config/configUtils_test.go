@@ -1,19 +1,20 @@
 package config
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestGetValueSuccess(t *testing.T) {
-	str, err := GetValue("redis", "address")
+	str, err := GetValue("mysql", "ipAddrees")
 
 	assert.Equal(t, nil, err)
 
-	assert.Equal(t, "127.0.0.1:6379", str)
+	assert.Equal(t, "127.0.0.1", str)
 }
 func TestGetValueFail(t *testing.T) {
-	_, err := GetValue("redis", "addressOther")
+	_, err := GetValue("mysql", "ipAddrees2")
 
 	assert.NotEqual(t, "127.0.0.1:6379", err)
 }

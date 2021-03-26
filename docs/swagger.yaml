@@ -12,8 +12,10 @@ definitions:
   vojo.AddCustomerRewardPointsBulkSingle:
     properties:
       customerID:
+        example: "13"
         type: string
       points:
+        example: "90"
         type: string
     required:
     - customerID
@@ -43,8 +45,10 @@ definitions:
   vojo.GetCustomersSingle:
     properties:
       pageNo:
+        example: "0"
         type: string
       recordsOnPage:
+        example: "10"
         type: string
     required:
     - pageNo
@@ -85,8 +89,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: '{"resCode": 0,"message": {"transactionID": 24,"customerID":
-            17,"points": 90,"createdUnixTime": 1616634980,"expiryUnixTime": 0}}'
+          description: ok
           schema:
             type: string
       security:
@@ -115,8 +118,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: '{"resCode": 0,"message": {"transactionID": 24,"customerID":
-            17,"points": 90,"createdUnixTime": 1616634980,"expiryUnixTime": 0}}'
+          description: ok
           schema:
             type: string
       security:
@@ -146,8 +148,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: '{"resCode": 0,"message": {"transactionID": 24,"customerID":
-            17,"points": 90,"createdUnixTime": 1616634980,"expiryUnixTime": 0}}'
+          description: ok
           schema:
             type: string
       security:
@@ -177,8 +178,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: '{"resCode": 0,"message": {"transactionID": 24,"customerID":
-            17,"points": 90,"createdUnixTime": 1616634980,"expiryUnixTime": 0}}'
+          description: ok
           schema:
             type: string
       security:
@@ -199,7 +199,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: '{"resCode": 0,"message": "xxxxxx"}'
+          description: ok
           schema:
             type: string
       security:

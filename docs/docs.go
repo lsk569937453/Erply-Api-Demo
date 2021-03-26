@@ -71,7 +71,7 @@ var doc = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"resCode\": 0,\"message\": {\"transactionID\": 24,\"customerID\": 17,\"points\": 90,\"createdUnixTime\": 1616634980,\"expiryUnixTime\": 0}}",
+                        "description": "ok",
                         "schema": {
                             "type": "string"
                         }
@@ -117,7 +117,7 @@ var doc = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"resCode\": 0,\"message\": {\"transactionID\": 24,\"customerID\": 17,\"points\": 90,\"createdUnixTime\": 1616634980,\"expiryUnixTime\": 0}}",
+                        "description": "ok",
                         "schema": {
                             "type": "string"
                         }
@@ -163,7 +163,7 @@ var doc = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"resCode\": 0,\"message\": {\"transactionID\": 24,\"customerID\": 17,\"points\": 90,\"createdUnixTime\": 1616634980,\"expiryUnixTime\": 0}}",
+                        "description": "ok",
                         "schema": {
                             "type": "string"
                         }
@@ -210,7 +210,7 @@ var doc = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"resCode\": 0,\"message\": {\"transactionID\": 24,\"customerID\": 17,\"points\": 90,\"createdUnixTime\": 1616634980,\"expiryUnixTime\": 0}}",
+                        "description": "ok",
                         "schema": {
                             "type": "string"
                         }
@@ -244,7 +244,7 @@ var doc = `{
                 ],
                 "responses": {
                     "200": {
-                        "description": "{\"resCode\": 0,\"message\": \"xxxxxx\"}",
+                        "description": "ok",
                         "schema": {
                             "type": "string"
                         }
@@ -276,10 +276,12 @@ var doc = `{
             ],
             "properties": {
                 "customerID": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "13"
                 },
                 "points": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "90"
                 }
             }
         },
@@ -322,10 +324,12 @@ var doc = `{
             ],
             "properties": {
                 "pageNo": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "0"
                 },
                 "recordsOnPage": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "10"
                 }
             }
         }
