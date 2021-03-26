@@ -40,6 +40,6 @@ Run the following command to start the project
 The Swagger Document is on http://localhost:9394/docs/index.html.
 
 ### Demo Project
-The demo project is located in [Demo Project](http://localhost:9394/docs/index.html).
+The demo project is located in [Demo Project](http://18.212.36.8:9394/docs/index.html).
 
 
