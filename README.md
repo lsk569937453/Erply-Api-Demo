@@ -12,7 +12,7 @@ port=3308
 username=root
 password=elong
 ```
-The default database is erply_ api。 Therefore, you need to create a new one named erply_ api on MySQL. database.
+The default database is erply_ api。 Therefore, you need to create a new one named erply_ api on MySQL database.
 
 ### Compile
 Run the following command to compile the project
