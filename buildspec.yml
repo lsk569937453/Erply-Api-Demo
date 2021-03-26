@@ -10,7 +10,7 @@ phases:
       - go mod tidy
       - go mod vendor
       - go build
-      - zip -r erply-api.zip  conf timer-go
+      - zip -r erply-api.zip  conf erply-api
 
 artifacts:
   files:
