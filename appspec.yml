@@ -4,7 +4,7 @@ os: linux
 
 files:
   - source: /
-    destination: /tmp
+    destination: /tmp/erply_api
 
 permissions:
   - object: /tmp
