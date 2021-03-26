@@ -6,8 +6,6 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/erply/api-go-wrapper/pkg/api/auth"
-
 	"github.com/erply/api-go-wrapper/pkg/api"
 )
 
@@ -39,15 +37,24 @@ func buildClient() (*api.Client, error) {
 	}
 	httpCl := &http.Client{Transport: transport}
 
-	sessionKey, err := auth.VerifyUser(username, password, clientCode, http.DefaultClient)
-	if err != nil {
-		panic(err)
+	// sessionKey, err := auth.VerifyUser(username, password, clientCode, http.DefaultClient)
+	// if err != nil {
+	// 	panic(err)
+	// }
+
+	// apiClient, err := api.NewClient(sessionKey, clientCode, httpCl)
+	// if err != nil {
+	// 	panic(err)
+	// }
+	clBldr := api.ClientBuilder{
+		UserName:                 username,
+		Password:                 password,
+		ClientCode:               clientCode,
+		DefaultSessionLenSeconds: 3600 * 24 * 3, //default length is smaller than the wait time so the session will expire before the next attempt which should repeat the auth
+		HttpCli:                  httpCl,
 	}
 
-	apiClient, err := api.NewClient(sessionKey, clientCode, httpCl)
-	if err != nil {
-		panic(err)
-	}
+	apiClient := clBldr.Build()
 
 	return apiClient, nil
 }
