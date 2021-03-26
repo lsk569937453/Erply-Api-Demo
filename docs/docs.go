@@ -20,9 +20,9 @@ var doc = `{
         "title": "{{.Title}}",
         "termsOfService": "http://swagger.io/terms/",
         "contact": {
-            "name": "API Support",
-            "url": "http://www.swagger.io/support",
-            "email": "support@swagger.io"
+            "name": "Shikai Liu",
+            "url": "https://github.com/lsk569937453",
+            "email": "lsk569937453@gmail.com"
         },
         "license": {
             "name": "Apache 2.0",

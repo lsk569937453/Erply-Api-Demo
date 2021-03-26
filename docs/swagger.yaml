@@ -57,9 +57,9 @@ definitions:
 host: localhost:9394
 info:
   contact:
-    email: support@swagger.io
-    name: API Support
-    url: http://www.swagger.io/support
+    email: lsk569937453@gmail.com
+    name: Shikai Liu
+    url: https://github.com/lsk569937453
   description: This is a Erply api demo.
   license:
     name: Apache 2.0
